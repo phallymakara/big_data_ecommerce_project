@@ -1,9 +1,12 @@
 import os
+import sys
 import pandas as pd
 from sqlalchemy import create_engine
-from config import get_sqlalchemy_url  # your config file
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from config import get_sqlalchemy_url
+  # config file
 
-csv_directory = 'csv_files'  # Folder containing your CSV files
+csv_directory = 'data/raw'  # Folder containing CSV files
 
 engine = create_engine(get_sqlalchemy_url())
 
