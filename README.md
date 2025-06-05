@@ -78,6 +78,7 @@ Make sure the following are installed on your system:
    pandas
    psycopg2
    python-dotenv
+   sqlalchemy
    ```
 
 2. Install the dependencies:

@@ -1,32 +1,23 @@
-# src/utils/load_to_postgres.py
-
-from pyspark.sql import SparkSession
 import os
-from config import DB_CONFIG
+import pandas as pd
+from sqlalchemy import create_engine
+from config import get_sqlalchemy_url  # your config file
 
-folder_path = 'data/raw'
+csv_directory = 'csv_files'  # Folder containing your CSV files
 
-def load_csvs_to_postgres(folder_path, table_name_prefix="table_"):
-    spark = SparkSession.builder \
-        .appName("CSV to PostgreSQL") \
-        .config("spark.jars", "/path/to/postgresql-42.6.0.jar") \
-        .getOrCreate()
+engine = create_engine(get_sqlalchemy_url())
 
-    files = sorted([f for f in os.listdir(folder_path) if f.endswith(".csv")])
+for filename in sorted(os.listdir(csv_directory)):
+    if filename.endswith('.csv'):
+        file_path = os.path.join(csv_directory, filename)
+        # Use filename without extension as table name
+        table_name = os.path.splitext(filename)[0]
 
-    for i, filename in enumerate(files, start=1):
-        full_path = os.path.join(folder_path, filename)
-        df = spark.read.option("header", "true").csv(full_path)
+        print(f'Processing file: {file_path} -> Table: {table_name}')
+        
+        df = pd.read_csv(file_path)
+        
+        # Create or replace table for each CSV
+        df.to_sql(table_name, engine, if_exists='replace', index=False)
 
-        table_name = f"{table_name_prefix}{i}"
-
-        df.write.jdbc(
-            url=DB_CONFIG["url"],
-            table=table_name,
-            mode="overwrite",  # or 'append'
-            properties=DB_CONFIG["properties"]
-        )
-
-        print(f"Pushed {filename} -> PostgreSQL table: {table_name}")
-
-    spark.stop()
+print('✅ All CSV files uploaded with their own table names!')
