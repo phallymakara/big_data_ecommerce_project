@@ -98,3 +98,23 @@ Use the command below to clone the repository and move into the project director
 git clone https://github.com/phallymakara/big_data_ecommerce_project.git
 cd big_data_ecommerce_project
 ```
+
+## DATABASE CONFIGURATION
+
+- create database by using command
+
+```
+create database your_database_name
+```
+
+- or create manually in **GUI**
+- make sure you have **.env** file. if you exist create inside your project root
+- pass these variable
+
+```
+DB_HOST= your_database_host
+DB_PORT= your_database_port
+DB_NAME= your_database_name
+DB_USER= user
+DB_PASSWORD= your_password
+```
