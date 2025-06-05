@@ -32,7 +32,7 @@ The dataset includes multiple interlinked CSV files representing customers, orde
 | `olist_products_dataset.csv`            | Product metadata such as category, name length, and description length |
 | `olist_sellers_dataset.csv`             | Seller ID and their geographic location                                |
 | `product_category_name_translation.csv` | English translations of product categories                             |
-|  |
+|                                         |
 
 ---
 
@@ -51,3 +51,48 @@ The dataset includes multiple interlinked CSV files representing customers, orde
 - 📊 Identify sales trends by product category
 - 💳 Explore customer payment preferences
 - 🛍️ Cluster customers by order frequency and spending patterns
+
+## ⚙️ Project Setup & Installation
+
+Follow the steps below to set up the project in your local environment.
+
+---
+
+### ✅ Prerequisites
+
+Make sure the following are installed on your system:
+
+- **Python 3.11.5** or later
+- **pip** (Python package installer)
+- **Java 8** or later (required for PySpark)
+- **PostgreSQL** (if connecting to a PostgreSQL database)
+
+---
+
+### 📦 Create & Install `requirements.txt`
+
+1. Create a file named `requirements.txt` and add the following libraries:
+
+   ```
+   pyspark
+   pandas
+   psycopg2
+   python-dotenv
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+### 📁 Clone This Project Repository
+
+Use the command below to clone the repository and move into the project directory:
+
+```bash
+git clone https://github.com/phallymakara/big_data_ecommerce_project.git
+cd big_data_ecommerce_project
+```
