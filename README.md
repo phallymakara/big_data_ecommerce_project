@@ -79,6 +79,7 @@ Make sure the following are installed on your system:
    psycopg2
    python-dotenv
    sqlalchemy
+   psycopg2-binary
    ```
 
 2. Install the dependencies:

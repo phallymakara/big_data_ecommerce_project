@@ -10,6 +10,11 @@ csv_directory = 'data/raw'  # Folder containing CSV files
 
 engine = create_engine(get_sqlalchemy_url())
 
+connection_url = get_sqlalchemy_url()
+print("Connection URL:", connection_url)
+engine = create_engine(connection_url)
+
+
 for filename in sorted(os.listdir(csv_directory)):
     if filename.endswith('.csv'):
         file_path = os.path.join(csv_directory, filename)
